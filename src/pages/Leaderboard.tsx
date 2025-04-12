@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Input } from '@/components/ui/input';
-import { BarChart, Trophy, Search, Filter, Award, Brain, ArrowUp, ArrowDown, Equals } from 'lucide-react';
+import { BarChart, Trophy, Search, Filter, Award, Brain, ArrowUp, ArrowDown, Equal } from 'lucide-react';
 import { 
   BarChart as RechartBarChart,
   Bar,
@@ -71,7 +71,7 @@ const Leaderboard = () => {
       case 'down':
         return <ArrowDown className="h-4 w-4 text-red-500" />;
       default:
-        return <Equals className="h-4 w-4 text-yellow-500" />;
+        return <Equal className="h-4 w-4 text-yellow-500" />;
     }
   };
   
