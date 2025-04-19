@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import Layout from '@/components/layout/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -17,42 +16,41 @@ import {
   Cell
 } from 'recharts';
 
-// Sample data for the leaderboard
 const leaderboardData = [
-  { id: 1, aiModel: "GPT-4o-mini", framework: "React", version: "18.x", winRate: 72, totalMatches: 124, trend: "up" },
-  { id: 2, aiModel: "Claude 3 Sonnet", framework: "Next.js", version: "14.x", winRate: 68, totalMatches: 97, trend: "up" },
-  { id: 3, aiModel: "GPT-4.5 Preview", framework: "Three.js", version: "r150", winRate: 85, totalMatches: 62, trend: "up" },
-  { id: 4, aiModel: "Claude 3 Opus", framework: "Vue", version: "3.x", winRate: 63, totalMatches: 105, trend: "down" },
-  { id: 5, aiModel: "Anthropic Claude", framework: "Tailwind", version: "3.x", winRate: 58, totalMatches: 89, trend: "neutral" },
-  { id: 6, aiModel: "Gemini 2.0", framework: "Angular", version: "15.x", winRate: 61, totalMatches: 72, trend: "up" },
-  { id: 7, aiModel: "GPT-4o", framework: "Svelte", version: "4.x", winRate: 77, totalMatches: 54, trend: "up" },
-  { id: 8, aiModel: "Anthropic Claude 3", framework: "React", version: "16.x", winRate: 52, totalMatches: 65, trend: "down" },
-  { id: 9, aiModel: "Gemini 2.0 Pro", framework: "Express", version: "4.x", winRate: 56, totalMatches: 48, trend: "neutral" },
-  { id: 10, aiModel: "Claude 2", framework: "Next.js", version: "12.x", winRate: 44, totalMatches: 58, trend: "down" },
+  { id: 1, aiModel: "GPT-4o", framework: "React", version: "18.x", winRate: 83, totalMatches: 154, trend: "up" },
+  { id: 2, aiModel: "Claude 3.5 Sonnet", framework: "Next.js", version: "14.x", winRate: 79, totalMatches: 127, trend: "up" },
+  { id: 3, aiModel: "Anthropic Claude 3.7 Sonnet", framework: "Three.js", version: "r150", winRate: 85, totalMatches: 92, trend: "up" },
+  { id: 4, aiModel: "GPT-4o-mini", framework: "Vue", version: "3.x", winRate: 71, totalMatches: 115, trend: "up" },
+  { id: 5, aiModel: "Gemini 2.5 Pro", framework: "Tailwind", version: "3.x", winRate: 76, totalMatches: 89, trend: "up" },
+  { id: 6, aiModel: "DeepSeek R1", framework: "Angular", version: "15.x", winRate: 69, totalMatches: 72, trend: "up" },
+  { id: 7, aiModel: "DeepSeek v3 0324", framework: "Svelte", version: "4.x", winRate: 64, totalMatches: 54, trend: "neutral" },
+  { id: 8, aiModel: "Gemini 2.5 Flash", framework: "React", version: "16.x", winRate: 62, totalMatches: 65, trend: "up" },
+  { id: 9, aiModel: "Grok 3", framework: "Express", version: "4.x", winRate: 67, totalMatches: 58, trend: "neutral" },
+  { id: 10, aiModel: "Llama 4", framework: "Next.js", version: "12.x", winRate: 68, totalMatches: 72, trend: "up" },
+  { id: 11, aiModel: "Llama 3.1 70B", framework: "React", version: "18.x", winRate: 61, totalMatches: 64, trend: "neutral" },
+  { id: 12, aiModel: "O1", framework: "Svelte", version: "5.x", winRate: 87, totalMatches: 43, trend: "up" },
 ];
 
-// Data for charts
 const frameworkData = [
-  { name: 'React 18', newerVersion: 72, olderVersion: 59 },
-  { name: 'Next.js 14', newerVersion: 68, olderVersion: 44 },
-  { name: 'Three.js r150', newerVersion: 85, olderVersion: 62 },
-  { name: 'Vue 3', newerVersion: 63, olderVersion: 48 },
-  { name: 'Tailwind 3', newerVersion: 58, olderVersion: 52 },
+  { name: 'React 18', newerVersion: 83, olderVersion: 62 },
+  { name: 'Next.js 14', newerVersion: 79, olderVersion: 58 },
+  { name: 'Three.js r150', newerVersion: 85, olderVersion: 69 },
+  { name: 'Vue 3', newerVersion: 71, olderVersion: 54 },
+  { name: 'Tailwind 3', newerVersion: 76, olderVersion: 65 },
 ];
 
 const modelData = [
-  { name: 'GPT-4o', value: 79, color: '#00FFFF' },
-  { name: 'Claude 3', value: 68, color: '#9D00FF' },
-  { name: 'GPT-4o-mini', value: 72, color: '#00FF9D' },
-  { name: 'Claude Sonnet', value: 64, color: '#FF00FF' },
-  { name: 'Gemini 2.0', value: 61, color: '#0066FF' },
+  { name: 'O1', value: 87, color: '#FF00FF' },
+  { name: 'GPT-4o', value: 83, color: '#00FFFF' },
+  { name: 'Claude 3.7', value: 85, color: '#9D00FF' },
+  { name: 'GPT-4o-mini', value: 71, color: '#00FF9D' },
+  { name: 'Gemini 2.5 Pro', value: 76, color: '#0066FF' },
 ];
 
 const Leaderboard = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedFramework, setSelectedFramework] = useState('all');
   
-  // Filter the leaderboard data based on search term and selected framework
   const filteredData = leaderboardData.filter(item => {
     const matchesSearch = 
       item.aiModel.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -266,23 +264,29 @@ const Leaderboard = () => {
                 <div className="bg-muted/30 p-3 rounded-md">
                   <div className="flex items-center gap-2 mb-1">
                     <Award className="h-4 w-4 text-neon-cyan" />
-                    <h4 className="font-medium">OpenAI Models</h4>
+                    <h4 className="font-medium">Latest Models</h4>
                   </div>
                   <ul className="text-sm text-muted-foreground space-y-1 pl-6">
                     <li>GPT-4o (April 2024)</li>
                     <li>GPT-4o-mini (April 2024)</li>
-                    <li>GPT-4.5-preview (March 2025)</li>
+                    <li>O1 (July 2024)</li>
+                    <li>Claude 3.5 Sonnet (June 2024)</li>
+                    <li>Claude 3.7 Sonnet (August 2024)</li>
                   </ul>
                 </div>
                 <div className="bg-muted/30 p-3 rounded-md">
                   <div className="flex items-center gap-2 mb-1">
                     <Award className="h-4 w-4 text-neon-pink" />
-                    <h4 className="font-medium">Anthropic Models</h4>
+                    <h4 className="font-medium">Other Leading Models</h4>
                   </div>
                   <ul className="text-sm text-muted-foreground space-y-1 pl-6">
-                    <li>Claude 3 Opus (March 2024)</li>
-                    <li>Claude 3 Sonnet (March 2024)</li>
-                    <li>Claude 3 Haiku (March 2024)</li>
+                    <li>Gemini 2.5 Pro (June 2024)</li>
+                    <li>Gemini 2.5 Flash (June 2024)</li>
+                    <li>DeepSeek R1 (August 2024)</li>
+                    <li>DeepSeek v3 0324 (March 2024)</li>
+                    <li>Grok 3 (August 2024)</li>
+                    <li>Llama 4 (July 2024)</li>
+                    <li>Llama 3.1 70B (April 2024)</li>
                   </ul>
                 </div>
               </div>
